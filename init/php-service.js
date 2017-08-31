@@ -22,12 +22,13 @@ reg.register('service.php.run', {
         var remoteTempPath = config.remoteTempPath;
         var isJob = ctx.stash("job_dir");
         var phpPath = config.phpPath;
+        var fileName = "clarive-php-code-" + Date.now() + ".php";
 
         if (isJob) {
-            filePath = path.join(isJob, "php-code.php");
+            filePath = path.join(isJob, fileName);
             fs.createFile(filePath, config.code);
         } else {
-            filePath = path.join(CLARIVE_TEMP, "php-code.php");
+            filePath = path.join(CLARIVE_TEMP, fileName);
             fs.createFile(filePath, config.code);
         }
 
@@ -41,7 +42,7 @@ reg.register('service.php.run', {
         }
 
         myUtils.shipFiles(server, filePath, remoteTempPath);
-        var remoteFilePath = path.join(remoteTempPath, "php-code.php");
+        var remoteFilePath = path.join(remoteTempPath, fileName);
         var phpRemoteCommand = phpCommand + phpParams + " " + remoteFilePath;
 
         log.info(_("Executing PHP code"));
