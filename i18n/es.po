@@ -1,0 +1,39 @@
+#: init/php-service.js
+msgid "Run PHP Code"
+msgstr "Ejecutar Código de PHP"
+
+#: init/php-service.js
+msgid "Executing PHP code"
+msgstr "Ejecutando código de PHP"
+
+#: init/php-service.js
+msgid "PHP code executed: "
+msgstr "Código de PHP ejecutado: "
+
+#: modules/myutils.js
+msgid "PHP execute code"
+msgstr "Ejecución de código PHP"
+
+#: modules/myutils.js
+msgid "PHP ship file"
+msgstr "Envío de archivo PHP"
+
+#: public/form/php-form.js
+msgid "Server"
+msgstr "Servidor"
+
+#: public/form/php-form.js
+msgid "PHP path"
+msgstr "Ruta de PHP"
+
+#: public/form/php-form.js
+msgid "PHP parameters"
+msgstr "Parámetros de PHP"
+
+#: public/form/php-form.js
+msgid "Code Editor"
+msgstr "Editor de Código"
+
+#: public/form/php-form.js
+msgid "Remote temp path"
+msgstr "Ruta temporal remota"
