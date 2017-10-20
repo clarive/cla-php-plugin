@@ -1,0 +1,9 @@
+name: Clarive PHP Plugin
+description: The PHP plugin will allow you to execute PHP code on the server of your choice in Clarive and to view its result.
+version: 1.0
+icon: https://github.com/clarive/cla-php-plugin/public/icon/php.svg
+url: https://github.com/clarive/cla-php-plugin
+requires:
+  - clarive_version: 6.8 <= version
+dependencies:
+  - cla-php-plugin
