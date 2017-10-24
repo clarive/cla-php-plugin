@@ -1,4 +1,4 @@
-name: Clarive PHP Plugin
+name: PHP Plugin
 description: The PHP plugin will allow you to execute PHP code on the server of your choice in Clarive and to view its result.
 version: 1.0
 icon: https://cdn.rawgit.com/clarive/cla-php-plugin/master/public/icon/php.svg?sanitize=true
