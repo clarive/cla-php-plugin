@@ -4,6 +4,30 @@ reg.register('service.php.run', {
     name: _('Run PHP Code'),
     icon: '/plugin/cla-php-plugin/icon/php.svg',
     form: '/plugin/cla-php-plugin/form/php-form.js',
+    rulebook: {
+        moniker: 'php_script',
+        description: _('Executes a PHP script'),
+        required: ['server', 'code', 'php_path'],
+        allow: ['server', 'php_path', 'php_args', 'user', 'code', 'remote_temp_path', 'errors' ],
+        mapper: {
+            'php_path':'phpPath',
+            'php_args':'phpArgs',
+            'remote_temp_path':'remoteTempPath',
+        },
+        examples: [{
+            php_script: {
+                server: 'php_script',
+                user: 'clarive_user',
+                remote_temp_path: "/tmp/scripts/",
+                php_path: "/usr/bin/php",
+                php_args: ['-f'],
+                code: `<?php
+                    echo 'hello world';
+                        ?>`,
+                errors: "fail"
+            }
+        }]
+    },
     handler: function(ctx, config) {
 
         var ci = require("cla/ci");
@@ -23,6 +47,7 @@ reg.register('service.php.run', {
         var isJob = ctx.stash("job_dir");
         var phpPath = config.phpPath;
         var fileName = "clarive-php-code-" + Date.now() + ".php";
+        var user = config.user || "";
 
         if (isJob) {
             filePath = path.join(isJob, fileName);
@@ -41,14 +66,14 @@ reg.register('service.php.run', {
             phpCommand = phpPath + " ";
         }
 
-        myUtils.shipFiles(server, filePath, remoteTempPath);
+        myUtils.shipFiles(server, filePath, remoteTempPath, user);
         var remoteFilePath = path.join(remoteTempPath, fileName);
         var phpRemoteCommand = phpCommand + phpParams + " " + remoteFilePath;
 
         log.info(_("Executing PHP code"));
-        response = myUtils.remoteCommand(config, phpRemoteCommand, server, errors);
+        response = myUtils.remoteCommand(config, phpRemoteCommand, server, errors, user);
         var commandRemove = "rm " + remoteFilePath;
-        myUtils.remoteCommand(config, commandRemove, server, errors);
+        myUtils.remoteCommand(config, commandRemove, server, errors, user);
 
         log.info(_("PHP code executed: "), response.output);
         fs.deleteFile(filePath);

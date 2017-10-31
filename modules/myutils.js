@@ -1,12 +1,13 @@
 var reg = require('cla/reg');
 
-exports.remoteCommand = function(params, command, server, errors) {
+exports.remoteCommand = function(params, command, server, errors, user) {
 
     var output = reg.launch('service.scripting.remote', {
         name: _('PHP execute code'),
         config: {
             errors: errors,
             server: server,
+            user: user,
             path: command,
             output_error: params.output_error,
             output_warn: params.output_warn,
@@ -21,12 +22,13 @@ exports.remoteCommand = function(params, command, server, errors) {
     return output;
 };
 
-exports.shipFiles = function(server, filePath, remoteTempPath) {
+exports.shipFiles = function(server, filePath, remoteTempPath, user) {
 
     reg.launch('service.fileman.ship', {
         name: _('PHP ship file'),
         config: {
             server: server,
+            user: user,
             local_path: filePath,
             remote_path: remoteTempPath
         }
