@@ -1,6 +1,6 @@
 # PHP Plugin
 
-<img src="https://cdn.rawgit.com/clarive/cla-php-plugin/master/public/icon/php.svg" alt="PHP Plugin" title="PHP Plugin" width="120" height="120">
+<img src="https://cdn.jsdelivr.net/gh/clarive/cla-php-plugin/public/icon/php.svg" alt="PHP Plugin" title="PHP Plugin" width="120" height="120">
 
 The PHP plugin will allow you to execute PHP code on the server of your choice in Clarive and to view its result.
 
